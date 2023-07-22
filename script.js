@@ -11,7 +11,7 @@ for (let i = 0; i < 16; i++) {
         const div = document.createElement('div');
         div.classList.add('div-grid');
         parentDiv.appendChild(div);
-        const cote = 60;
+        const cote =  3125 / 100;
         div.style.width = `${cote}px`;
         div.style.height = `${cote}px`;
     }
@@ -21,10 +21,10 @@ for (let i = 0; i < 16; i++) {
 
 
 function changeSquare () {
-    let numberOfSquare = parseInt(prompt('Veuillez choisir le nombre de carrés par côté (max: 100): '));
+    let numberOfSquare = parseInt(prompt('Veuillez choisir le nombre de carrés par côté (max: 64): '));
     let number = 0;
-    if (numberOfSquare > 100 || numberOfSquare < 0) {
-        alert("Vous avez choisi un nombre de carrés suppérieur à 100 ou inférieur à 0 !");
+    if (numberOfSquare > 64 || numberOfSquare < 0) {
+        alert("Vous avez choisi un nombre de carrés suppérieur à 64 ou inférieur à 0 !");
     } else if (typeof numberOfSquare != 'number') {
         alert("Vous n'avez pas choisi un nombre !");
     } else {
@@ -39,13 +39,28 @@ function changeSquare () {
                 const div = document.createElement('div');
                 div.classList.add('div-grid');
                 parentDiv.appendChild(div);
-                const cote = 960 / numberOfSquare;
-                const border = 4 / numberOfSquare;
+                const cote = 500 / numberOfSquare;
                 div.style.width = `${cote}px`;
                 div.style.height = `${cote}px`;
-                div.style.border = `${border}px solid black;`
             }
             number++
         }
     }
+    const allDiv = document.querySelectorAll('.div-grid');
+
+    allDiv.forEach((div) => {
+    div.addEventListener('click', () => {
+    const currentColor = div.style.backgroundColor;
+    div.style.backgroundColor = currentColor === "black" ? "white" : "black";
+  });
+});
 }
+
+const allDiv = document.querySelectorAll('.div-grid');
+
+allDiv.forEach((div) => {
+  div.addEventListener('click', () => {
+    const currentColor = div.style.backgroundColor;
+    div.style.backgroundColor = currentColor === "black" ? "white" : "black";
+  });
+});
